@@ -10,3 +10,8 @@ jobs:
           run: |
             chmod +x generate-artwork.sh
             ./generate-artwork.sh
+    test_job:
+        runs-on: ubuntu-latest
+        steps:
+         - name: show artwork on test runner
+           run: cat dragon.txt
