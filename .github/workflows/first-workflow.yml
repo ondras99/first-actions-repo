@@ -6,9 +6,8 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v6
-        - name: Welcome Message
-          run: echo "hello"
-        - name: Second Job-list
-          run: ls
-        - name: Third Job-read readme
-          run: cat README.md
+        - name: welcome message, list files and view readme
+          run: |
+           echo "hello"
+           ls
+           cat README.md
