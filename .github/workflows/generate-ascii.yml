@@ -1,0 +1,16 @@
+name: generate ascii artwork
+on: push
+jobs: 
+    generate_artwork:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v6
+        - name: install cowsay
+          run: sudo apt-get install cowsay -y
+        - name: generate the artwork into a file
+          run: cowsay -f dragon "plm..." >> dragon.txt
+        - name: verify the file exists
+          run: find . -name dragon.txt
+        - name: lists all files
+          run: ls
