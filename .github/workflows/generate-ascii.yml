@@ -11,6 +11,7 @@ jobs:
             chmod +x generate-artwork.sh
             ./generate-artwork.sh
     test_job:
+        needs: generate_artwork
         runs-on: ubuntu-latest
         steps:
          - name: show artwork on test runner
