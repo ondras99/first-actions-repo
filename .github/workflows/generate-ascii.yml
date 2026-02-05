@@ -12,20 +12,20 @@ jobs:
           run: |
             chmod +x generate-artwork.sh
             ./generate-artwork.sh
-        - name: upload $DRAGON_FILE.txt artifact
+        - name: upload ${{ env.DRAGON_FILE }}.txt artifact
           uses: actions/upload-artifact@v4
           with:
-            name: $DRAGON_FILE
-            path: ./$DRAGON_FILE.txt
+            name: ${{ env.DRAGON_FILE }}
+            path: ./${{ env.DRAGON_FILE }}.txt
             
     test_job:
         needs: generate_artwork
         runs-on: ubuntu-latest
         steps:
-         - name: download $DRAGON_FILE artifact
+         - name: download ${{ env.DRAGON_FILE }} artifact
            uses: actions/download-artifact@v5
            with:
-              name: $DRAGON_FILE
+              name: ${{ env.DRAGON_FILE }}
               path: ./
          - name: show artwork on test runner
-           run: cat $DRAGON_FILE.txt
+           run: cat ${{ env.DRAGON_FILE }}.txt
