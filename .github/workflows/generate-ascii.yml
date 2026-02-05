@@ -1,5 +1,7 @@
 name: generate ascii artwork
 on: push
+env: 
+  DRAGON_FILE: dragon
 jobs: 
     generate_artwork:
         runs-on: ubuntu-latest
@@ -10,20 +12,20 @@ jobs:
           run: |
             chmod +x generate-artwork.sh
             ./generate-artwork.sh
-        - name: upload dragon.txt artifact
+        - name: upload $DRAGON_FILE.txt artifact
           uses: actions/upload-artifact@v4
           with:
-            name: dragon
-            path: ./dragon.txt
+            name: $DRAGON_FILE
+            path: ./$DRAGON_FILE.txt
             
     test_job:
         needs: generate_artwork
         runs-on: ubuntu-latest
         steps:
-         - name: download dragon artifact
+         - name: download $DRAGON_FILE artifact
            uses: actions/download-artifact@v5
            with:
-              name: dragon
+              name: $DRAGON_FILE
               path: ./
          - name: show artwork on test runner
-           run: cat dragon.txt
+           run: cat $DRAGON_FILE.txt
